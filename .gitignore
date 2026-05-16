@@ -1,0 +1,21 @@
+.venv/
+__pycache__/
+*.pyc
+data/uploads/
+.env
+emotisense.db
+
+# Models and Large Files
+.agent/
+*.pt
+*.pth
+*.bin
+*.h5
+*.weights
+*.onnx
+*.joblib
+*.pkl
+
+# IDEs
+.vscode/
+.idea/

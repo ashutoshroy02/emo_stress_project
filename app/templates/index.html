@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmotiSense AI | Advanced Speech Analysis</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/profile.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="dark-mode">
+    <div class="glow-bg"></div>
+    
+    <!-- 1. WELCOME SCREEN (LANDING) -->
+    <section id="welcome-screen" class="full-page">
+        <nav class="glass-nav">
+            <div class="logo">EmotiSense <span>PRO</span></div>
+            <button class="btn-secondary" onclick="showAuth('login')">Login</button>
+        </nav>
+        
+        <div class="hero-content">
+            <h1 class="glitch-text">Your Voice. Your <span>Wellness.</span></h1>
+            <p>Advanced AI-powered speech emotion recognition and stress detection for a healthier mind.</p>
+            <div class="features-grid">
+                <div class="feat">
+                    <i class="fas fa-microchip"></i>
+                    <h4>AI Analysis</h4>
+                    <p>Wav2Vec2 + Bi-LSTM Hybrid Model</p>
+                </div>
+                <div class="feat">
+                    <i class="fas fa-heartbeat"></i>
+                    <h4>Stress Tracking</h4>
+                    <p>Real-time stress level monitoring</p>
+                </div>
+                <div class="feat">
+                    <i class="fas fa-user-md"></i>
+                    <h4>Wellness Support</h4>
+                    <p>AI-driven emotional guidance</p>
+                </div>
+            </div>
+            <button class="btn-primary btn-lg" onclick="showAuth('signup')">Get Started Now <i class="fas fa-arrow-right"></i></button>
+        </div>
+    </section>
+
+    <!-- 2. AUTH SCREEN (LOGIN/SIGNUP) -->
+    <section id="auth-screen" class="full-page hidden">
+        <div class="auth-container glass-card">
+            <div id="login-view">
+                <h2>Welcome Back</h2>
+                <form id="login-form">
+                    <input type="text" placeholder="Username" required>
+                    <input type="password" placeholder="Password" required>
+                    <button type="submit" class="btn-primary">Login to Dashboard</button>
+                </form>
+                <p>New to EmotiSense? <a href="#" onclick="toggleAuthView('signup')">Create Account</a></p>
+                <a href="#" onclick="showSection('welcome-screen')" class="back-link"><i class="fas fa-chevron-left"></i> Back to Home</a>
+            </div>
+
+            <div id="signup-view" class="hidden">
+                <h2>Join EmotiSense</h2>
+                <form id="signup-form">
+                    <input type="text" placeholder="Username" required>
+                    <input type="email" placeholder="Email" required>
+                    <input type="password" placeholder="Password" required>
+                    <button type="submit" class="btn-primary">Sign Up Now</button>
+                </form>
+                <p>Already have an account? <a href="#" onclick="toggleAuthView('login')">Login here</a></p>
+                <a href="#" onclick="showSection('welcome-screen')" class="back-link"><i class="fas fa-chevron-left"></i> Back to Home</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. MAIN DASHBOARD (HIDDEN UNTIL AUTH) -->
+    <div id="app-dashboard" class="hidden">
+        <nav class="glass-nav">
+            <div class="logo">EmotiSense <span>PRO</span></div>
+            <div class="nav-links">
+                <a href="#recorder"><i class="fas fa-microphone"></i> Recorder</a>
+                <a href="#analytics"><i class="fas fa-chart-pie"></i> Analytics</a>
+                <a href="#history"><i class="fas fa-history"></i> History</a>
+                <a href="#profile"><i class="fas fa-user"></i> Profile</a>
+                <button class="btn-secondary" id="logout-btn">Logout</button>
+            </div>
+        </nav>
+
+        <main>
+            <section id="recorder" class="hero dashboard-hero">
+                <div class="recording-container glass-card">
+                    <div class="rec-status">
+                        <span id="status-dot"></span>
+                        <span id="status-text">Ready to Record</span>
+                        <span id="timer">00:00</span>
+                    </div>
+                    <div id="waveform-container">
+                        <div id="waveform"></div>
+                    </div>
+                    <div class="controls">
+                        <button id="record-btn" class="ctrl-btn main-btn"><i class="fas fa-microphone"></i></button>
+                        <button id="pause-btn" class="ctrl-btn hidden"><i class="fas fa-pause"></i></button>
+                        <button id="stop-btn" class="ctrl-btn hidden"><i class="fas fa-stop"></i></button>
+                        <button id="delete-btn" class="ctrl-btn hidden"><i class="fas fa-trash"></i></button>
+                    </div>
+                    <div id="playback-container" class="hidden">
+                        <div class="audio-player">
+                            <button id="play-pause-btn"><i class="fas fa-play"></i></button>
+                            <div id="playback-waveform"></div>
+                            <button id="submit-btn" class="btn-primary">Analyze Voice</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="analytics" class="dashboard hidden">
+                <div class="section-header">
+                    <h2>Insights & Analytics</h2>
+                </div>
+                <div class="dashboard-grid">
+                    <div class="glass-card result-card">
+                        <h3>Primary Emotion</h3>
+                        <div id="emotion-display" class="emotion-value">Neutral</div>
+                        <div class="conf-text">Confidence: <span id="emotion-conf-text">0%</span></div>
+                        <div class="confidence-bar"><div id="emotion-conf" style="width: 0%"></div></div>
+                    </div>
+                    <div class="glass-card stress-card">
+                        <h3>Stress Level</h3>
+                        <div class="stress-gauge-container">
+                            <canvas id="stress-gauge"></canvas>
+                            <div id="stress-display" class="stress-value">0%</div>
+                        </div>
+                        <p id="stress-label">Low Stress</p>
+                    </div>
+                    <div class="glass-card chart-card full-width">
+                        <h3>Probabilities</h3>
+                        <div class="chart-container"><canvas id="emotion-chart"></canvas></div>
+                    </div>
+                    <div class="glass-card chat-card">
+                        <h3>AI Consultant</h3>
+                        <div id="chat-messages" class="chat-container"></div>
+                        <div class="chat-input">
+                            <input type="text" placeholder="Ask for advice...">
+                            <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="profile" class="profile-section hidden">
+                <div class="section-header">
+                    <h2>Account Management</h2>
+                </div>
+                
+                <div class="profile-container">
+                    <!-- 1. Personal Information Card -->
+                    <div class="glass-card profile-main">
+                        <div class="profile-header">
+                            <div class="profile-avatar"><i class="fas fa-user-shield"></i></div>
+                            <div class="profile-title">
+                                <h3 id="profile-username">User Name</h3>
+                                <p>Pro Account Member</p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-group">
+                            <div class="info-item">
+                                <label>Full Name</label>
+                                <span id="full-name-display">User Name</span>
+                            </div>
+                            <div class="info-item">
+                                <label>Email Address</label>
+                                <span id="profile-email">user@emotisense.ai</span>
+                            </div>
+                            <div class="info-item">
+                                <label>Member Since</label>
+                                <span>May 2026</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Settings & Security Card -->
+                    <div class="glass-card settings-card">
+                        <h3>Account Settings</h3>
+                        <div class="settings-list">
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <i class="fas fa-key"></i>
+                                    <div>
+                                        <h4>Password</h4>
+                                        <p>Update your security credentials</p>
+                                    </div>
+                                </div>
+                                <button class="btn-secondary" onclick="alert('Password reset link sent!')">Change</button>
+                            </div>
+
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    <div>
+                                        <h4>Session</h4>
+                                        <p>End your current session</p>
+                                    </div>
+                                </div>
+                                <button class="btn-danger-outline" onclick="document.getElementById('logout-btn').click()">Logout</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="history" class="history-section">
+                <div class="section-header"><h2>History</h2></div>
+                <div class="glass-card">
+                    <table>
+                        <thead><tr><th>Date</th><th>Emotion</th><th>Stress</th><th>Actions</th></tr></thead>
+                        <tbody id="history-body"></tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://unpkg.com/wavesurfer.js@7"></script>
+    <script src="https://unpkg.com/wavesurfer.js@7/dist/plugins/microphone.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/static/js/main.js"></script>
+    <script>
+        function showAuth(view) {
+            showSection('auth-screen');
+            toggleAuthView(view);
+        }
+        function toggleAuthView(view) {
+            document.getElementById('login-view').classList.toggle('hidden', view !== 'login');
+            document.getElementById('signup-view').classList.toggle('hidden', view !== 'signup');
+        }
+        function showSection(id) {
+            document.querySelectorAll('section, #app-dashboard').forEach(s => s.classList.add('hidden'));
+            document.getElementById(id).classList.remove('hidden');
+            if (id === 'app-dashboard') document.getElementById('welcome-screen').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
