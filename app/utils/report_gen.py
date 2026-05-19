@@ -11,7 +11,7 @@ def generate_report(user_data, analysis_results, output_path):
     story = []
 
     # Title
-    story.append(Paragraph("EmotiSense AI - Wellness Report", styles['Title']))
+    story.append(Paragraph("EchoCareAI AI - Wellness Report", styles['Title']))
     story.append(Spacer(1, 12))
 
     # User Info

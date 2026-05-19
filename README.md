@@ -1,1 +1,1 @@
-# Full EmotiSense Pro Project
+# Full EchoCareAI Pro Project

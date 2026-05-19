@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EmotiSense AI | Advanced Speech Analysis</title>
+    <title>EchoCareAI AI | Advanced Speech Analysis</title>
     <link rel="stylesheet" href="/static/css/style.css">
     <link rel="stylesheet" href="/static/css/profile.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
@@ -15,7 +15,7 @@
     <!-- 1. WELCOME SCREEN (LANDING) -->
     <section id="welcome-screen" class="full-page">
         <nav class="glass-nav">
-            <div class="logo">EmotiSense <span>PRO</span></div>
+            <div class="logo">EchoCareAI <span>PRO</span></div>
             <button class="btn-secondary" onclick="showAuth('login')">Login</button>
         </nav>
         
@@ -53,12 +53,12 @@
                     <input type="password" placeholder="Password" required>
                     <button type="submit" class="btn-primary">Login to Dashboard</button>
                 </form>
-                <p>New to EmotiSense? <a href="#" onclick="toggleAuthView('signup')">Create Account</a></p>
+                <p>New to EchoCareAI? <a href="#" onclick="toggleAuthView('signup')">Create Account</a></p>
                 <a href="#" onclick="showSection('welcome-screen')" class="back-link"><i class="fas fa-chevron-left"></i> Back to Home</a>
             </div>
 
             <div id="signup-view" class="hidden">
-                <h2>Join EmotiSense</h2>
+                <h2>Join EchoCareAI</h2>
                 <form id="signup-form">
                     <input type="text" placeholder="Username" required>
                     <input type="email" placeholder="Email" required>
@@ -74,7 +74,7 @@
     <!-- 3. MAIN DASHBOARD (HIDDEN UNTIL AUTH) -->
     <div id="app-dashboard" class="hidden">
         <nav class="glass-nav">
-            <div class="logo">EmotiSense <span>PRO</span></div>
+            <div class="logo">EchoCareAI <span>PRO</span></div>
             <div class="nav-links">
                 <a href="#recorder"><i class="fas fa-microphone"></i> Recorder</a>
                 <a href="#analytics"><i class="fas fa-chart-pie"></i> Analytics</a>
@@ -136,7 +136,9 @@
                     </div>
                     <div class="glass-card chat-card">
                         <h3>AI Consultant</h3>
-                        <div id="chat-messages" class="chat-container"></div>
+                        <div id="chat-messages" class="chat-container">
+                            <div class="msg bot">Hello! I'm your EchoCareAI Wellness Consultant. How are you feeling today? Let's analyze your voice to find out.</div>
+                        </div>
                         <div class="chat-input">
                             <input type="text" placeholder="Ask for advice...">
                             <button id="send-btn"><i class="fas fa-paper-plane"></i></button>

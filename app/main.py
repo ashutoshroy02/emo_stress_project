@@ -10,7 +10,7 @@ import os
 
 from app.database.session import init_db
 
-app = FastAPI(title="EmotiSense AI", version="1.0.0")
+app = FastAPI(title="EchoCareAI AI", version="1.0.0")
 
 # Initialize Database
 @app.on_event("startup")

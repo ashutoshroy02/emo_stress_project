@@ -1,4 +1,4 @@
-// EmotiSense PRO - Frontend Logic
+// EchoCareAI PRO - Frontend Logic
 document.addEventListener('DOMContentLoaded', () => {
     // --- State Variables ---
     let mediaRecorder;
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
         initWaveSurfer();
         initCharts();
         loadHistory();
-        console.log("EmotiSense PRO v1.1.1 (Fixed Mic & Fallbacks) Initialized");
+        console.log("EchoCareAI PRO v1.1.1 (Fixed Mic & Fallbacks) Initialized");
     } catch (err) {
         console.error("Initialization failed:", err);
     }

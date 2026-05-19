@@ -9,7 +9,7 @@ def get_python_executable():
     return sys.executable
 
 if __name__ == "__main__":
-    print("Starting EmotiSense AI Full-Stack Platform...")
+    print("Starting EchoCareAI AI Full-Stack Platform...")
     print("Backend: http://127.0.0.1:8000")
     
     # Run uvicorn
