@@ -59,6 +59,22 @@ Open **http://127.0.0.1:8000** in browser.
 
 ---
 
+## 🐳 Run with Docker
+
+### 1. Build Image
+```bash
+docker build -t echocareai-pro .
+```
+
+### 2. Run Container
+```bash
+docker run -d -p 8000:8000 --name echocareai-app echocareai-pro
+```
+Open **http://127.0.0.1:8000** in browser.
+
+---
+
+
 ## 📡 API Endpoints
 
 - **Auth**: `/api/auth/signup` & `/api/auth/login`
