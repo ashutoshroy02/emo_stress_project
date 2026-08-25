@@ -2,15 +2,22 @@
 
 ### Multitask Speech Emotion and Stress Detection Using a Hybrid Wav2Vec2–BiLSTM Model
 
-EchoCareAI PRO is an AI-powered speech analysis system that performs **simultaneous speech emotion recognition and continuous stress estimation from raw audio**.
+AI-powered speech analysis system for **emotion recognition and continuous stress estimation** using Wav2Vec2, Bi-LSTM, and multi-task learning.
 
-The system combines a pretrained **Wav2Vec2** speech representation model with a **Bidirectional LSTM (Bi-LSTM)** temporal modeling layer and a **multi-task learning framework** with separate prediction heads for emotion classification and stress regression.
+[📄 **Read the Research Paper**](./PID723.pdf) · [💻 **View Source Code**](https://github.com/ashutoshroy02/emo_stress_project)
 
-This repository contains the implementation of the research work:
+---
 
-> **“Multitask Speech Emotion and Stress Detection Using a Hybrid Wav2Vec2–BiLSTM Model”**
+## 🔬 Research
 
-The research was conducted as a minor project at **Chhattisgarh Swami Vivekanand Technical University (CSVTU), Bhilai, India**.
+This repository contains the implementation associated with the research paper:
+
+**“Multitask Speech Emotion and Stress Detection Using a Hybrid Wav2Vec2–BiLSTM Model.”**
+
+The proposed architecture jointly performs speech emotion classification and stress regression using a shared Wav2Vec2–Bi-LSTM representation.
+
+**85.9% Emotion Accuracy · 0.1268 Stress RMSE**
+
 
 ---
 
@@ -447,25 +454,41 @@ The endpoints correspond to the API structure currently documented in the reposi
 
 ## 📄 Research Paper
 
-The complete research paper associated with this project is:
+This repository accompanies the research paper:
 
-**Multitask Speech Emotion and Stress Detection Using a Hybrid Wav2Vec2–BiLSTM Model**
+### **Multitask Speech Emotion and Stress Detection Using a Hybrid Wav2Vec2–BiLSTM Model**
 
-### Authors
+The paper presents the proposed hybrid architecture for **joint speech emotion recognition and continuous stress estimation**, combining:
 
-* **Sejal Sahu** — Department of Computer Science & Engineering, CSVTU, Bhilai
-* **Ashutosh Roy** — Department of Computer Science & Engineering, CSVTU, Bhilai
-* **Dr. Toran Verma** — Department of Computer Science & Engineering, CSVTU, Bhilai
+* **Wav2Vec2** for self-supervised speech representation
+* **Bi-LSTM** for temporal dependency modeling
+* **Multi-task learning** for simultaneous emotion classification and stress regression
+* **RAVDESS, TESS, and SAVEE** for cross-dataset evaluation
+* **Arousal-based stress label derivation**
 
-The paper presents the methodology, dataset construction, model architecture, experimental configuration, results, ablation study, limitations, ethical considerations, and future research directions.
+The proposed system achieves:
 
-**Research Paper:** `research-paper.pdf`
+| Metric           |     Result |
+| ---------------- | ---------: |
+| Emotion Accuracy |  **85.9%** |
+| Macro F1-Score   |  **0.856** |
+| Stress RMSE      | **0.1268** |
+| Stress MAE       | **0.0945** |
 
-> Add the paper PDF to the repository root using the filename `research-paper.pdf` and this link will work automatically:
+### 👥 Authors
 
-```markdown
-[📄 Read the Research Paper](./research-paper.pdf)
-```
+**Sejal Sahu** · **Ashutosh Roy** · **Dr. Toran Verma**
+
+Department of Computer Science & Engineering
+Chhattisgarh Swami Vivekanand Technical University (CSVTU), Bhilai, India
+
+### 📑 Full Paper
+
+👉 **[Read the Research Paper (PID723.pdf)](./PID723.pdf)**
+
+The complete paper includes the methodology, system architecture, dataset preparation, training configuration, experimental results, ablation study, comparison with prior work, limitations, ethical considerations, and future research directions.
+
+> **Note:** The stress prediction component uses arousal-based proxy labels derived from emotion categories and is intended for research purposes. It should not be interpreted as a clinical diagnosis.
 
 ---
 
